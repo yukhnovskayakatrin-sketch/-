@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ПедМастер — интерактивный курс по педагогическому мастерству</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            margin: 0;
+            background: #f4f9ff;
+            color: #1e2a3a;
+        }
+        header {
+            background: #2c3e66;
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+        }
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.8rem;
+        }
+        .card {
+            background: white;
+            border-radius: 28px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+        }
+        .badge {
+            background: #eef2ff;
+            color: #2c3e66;
+            border-radius: 40px;
+            padding: 0.3rem 0.9rem;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        .card h2 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.6rem;
+        }
+        .card p {
+            color: #4a5b6e;
+            line-height: 1.4;
+        }
+        button.start-btn {
+            background: #2c3e66;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 0.8rem;
+            transition: background 0.2s;
+        }
+        button.start-btn:hover {
+            background: #1f2c4a;
+        }
+        .lesson-content {
+            display: none;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 2px dashed #cbd5e1;
+            background: #fefce8;
+            border-radius: 20px;
+            padding: 1rem;
+        }
+        .lesson-content.show {
+            display: block;
+        }
+        .theory {
+            background: #ffffff;
+            padding: 1rem;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+        }
+        .theory h3 {
+            margin-top: 0;
+            color: #2c3e66;
+        }
+        .example {
+            background: #eef2ff;
+            padding: 0.8rem;
+            border-radius: 16px;
+            margin: 1rem 0;
+        }
+        .task {
+            background: #f0fdf4;
+            padding: 0.8rem;
+            border-radius: 16px;
+            margin: 1rem 0;
+        }
+        .task button {
+            background: #2c3e66;
+            padding: 0.4rem 1rem;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        .feedback {
+            margin-top: 0.5rem;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+        .global-progress {
+            background: white;
+            border-radius: 28px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        progress {
+            width: 100%;
+            height: 22px;
+            border-radius: 20px;
+        }
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #5a6874;
+            border-top: 1px solid #cbd5e1;
+            margin-top: 2rem;
+        }
+        @media (max-width: 700px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>📘 ПедМастер: Старт</h1>
+    <p>Интерактивный курс — от теории к уверенности в классе</p>
+</header>
+<main>
+    <div class="card-grid">
+        <!-- Модуль 1: Коммуникация -->
+        <div class="card">
+            <span class="badge">🎤 Модуль 1</span>
+            <h2>Коммуникация</h2>
+            <p>Активное слушание, «Я-сообщения», открытые вопросы.</p>
+            <button class="start-btn" data-module="comm">📖 Начать обучение</button>
+            <div id="comm-lesson" class="lesson-content">
+                <div class="theory">
+                    <h3>📌 Теория</h3>
+                    <p><strong>Активное слушание</strong> — это умение слышать не только слова, но и чувства ученика. Используйте фразы: «Ты хочешь сказать, что...», «Я слышу твоё разочарование».</p>
+                    <p><strong>«Я-сообщения»</strong> вместо «Ты-обвинений»: «Мне грустно, когда кто-то перебивает» вместо «Ты вечно перебиваешь».</p>
+                    <p><strong>Открытые вопросы</strong> (как? почему? что ты думаешь?) развивают мышление.</p>
+                </div>
+                <div class="example">
+                    <strong>🧑‍🏫 Пример из практики:</strong><br>
+                    Ученик: «У меня ничего не получается!»<br>
+                    Учитель (активное слушание): «Я вижу, ты расстроен. Расскажи, что именно вызывает трудность?»<br>
+                    Вместо: «Не ной, пробуй ещё».
+                </div>
+                <div class="task">
+                    <strong>✏️ Мини-задание:</strong><br>
+                    Выберите вариант активного слушания:<br>
+                    <button onclick="checkTask('comm', 'a')">А) «Ты не стараешься»</button>
+                    <button onclick="checkTask('comm', 'b')">Б) «Я слышу, ты злишься. Давай разберёмся, что случилось»</button>
+                    <div id="comm-feedback" class="feedback"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Модуль 2: Мотивация -->
+        <div class="card">
+            <span class="badge">⚡ Модуль 2</span>
+            <h2>Мотивация</h2>
+            <p>Внутренняя мотивация, похвала, вовлечение.</p>
+            <button class="start-btn" data-module="motiv">📖 Начать обучение</button>
+            <div id="motiv-lesson" class="lesson-content">
+                <div class="theory">
+                    <h3>📌 Теория</h3>
+                    <p><strong>Внутренняя мотивация</strong> возникает, когда ученик видит смысл в задании. Говорите: «Как это пригодится в жизни?», «Ты сам можешь выбрать способ решения».</p>
+                    <p><strong>Похвала без «молодец»</strong>: «Ты упорно решал задачу и нашёл верный путь», «Я заметил, как ты помог соседу».</p>
+                </div>
+                <div class="example">
+                    <strong>🧑‍🏫 Пример:</strong><br>
+                    Ученик нарисовал схему. Вместо «Хорошо» скажите: «Твоя схема понятная, особенно выделены главные элементы. Как ты придумал такой способ?»
+                </div>
+                <div class="task">
+                    <strong>✏️ Мини-задание:</strong><br>
+                    Какая фраза лучше мотивирует?<br>
+                    <button onclick="checkTask('motiv', 'a')">А) «Молодец, пять»</button>
+                    <button onclick="checkTask('motiv', 'b')">Б) «Я вижу, ты приложил усилия — сегодня решил на 2 задачи больше, чем вчера»</button>
+                    <div id="motiv-feedback" class="feedback"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Модуль 3: Управление классом -->
+        <div class="card">
+            <span class="badge">🧑‍🏫 Модуль 3</span>
+            <h2>Управление классом</h2>
+            <p>Дисциплина, невербальные сигналы, переходы.</p>
+            <button class="start-btn" data-module="class">📖 Начать обучение</button>
+            <div id="class-lesson" class="lesson-content">
+                <div class="theory">
+                    <h3>📌 Теория</h3>
+                    <p><strong>Невербальные сигналы</strong>: поднятая рука, взгляд, хлопок в ладоши — тишина за 3 секунды. <strong>Переходы</strong>: «Через минуту меняем деятельность», «Таймер на 2 минуты».</p>
+                    <p><strong>План Б</strong>: если шумно, переключитесь на работу в парах или дайте минуту «выпустить пар».</p>
+                </div>
+                <div class="example">
+                    <strong>🧑‍🏫 Пример:</strong><br>
+                    Вместо крика «Замолчите!» учитель поднимает руку и ждёт. Кто заметил — тоже поднимает руку. Через 10 секунд тишина.
+                </div>
+                <div class="task">
+                    <strong>✏️ Мини-задание:</strong><br>
+                    Что эффективнее для быстрого привлечения внимания?<br>
+                    <button onclick="checkTask('class', 'a')">А) Крик «Тишина в классе!»</button>
+                    <button onclick="checkTask('class', 'b')">Б) Включить зрительный контакт + поднять руку (без звука)</button>
+                    <div id="class-feedback" class="feedback"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Модуль 4: Обратная связь -->
+        <div class="card">
+            <span class="badge">💬 Модуль 4</span>
+            <h2>Обратная связь</h2>
+            <p>Конструктивная критика, зона ближайшего развития.</p>
+            <button class="start-btn" data-module="feedback">📖 Начать обучение</button>
+            <div id="feedback-lesson" class="lesson-content">
+                <div class="theory">
+                    <h3>📌 Теория</h3>
+                    <p><strong>Сэндвич обратной связи</strong>: «Ты хорошо начал (позитив), но вот что можно улучшить (совет), а в целом у тебя отлично получается (поддержка)».</p>
+                    <p><strong>Конкретика</strong>: «В твоём эссе сильная аргументация, но вывод немного размыт. Попробуй перефразировать его одним предложением».</p>
+                </div>
+                <div class="example">
+                    <strong>🧑‍🏫 Пример:</strong><br>
+                    Ученик ошибся в уравнении: «Твой ход мыслей верный, ошибка только в знаке. Исправь — и дальше пойдёт легко».
+                </div>
+                <div class="task">
+                    <strong>✏️ Мини-задание:</strong><br>
+                    Какая обратная связь самая конструктивная?<br>
+                    <button onclick="checkTask('feedback', 'a')">А) «Всё плохо, переделай»</button>
+                    <button onclick="checkTask('feedback', 'b')">Б) «У тебя получилось описать проблему, но примеры можно сделать ярче. Давай вместе подумаем?»</button>
+                    <div id="feedback-feedback" class="feedback"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="global-progress">
+        <h3>📈 Ваш прогресс</h3>
+        <progress id="global-progress-bar" value="0" max="4"></progress>
+        <p>Изучено модулей: <span id="completed-count">0</span> из 4</p>
+        <button onclick="resetProgress()">Сбросить прогресс</button>
+    </div>
+</main>
+<footer>
+    © ПедМастер — учись, пробуй, рефлексируй.<br>
+    🔄 Для закрепления практикуйтесь в реальном общении с учениками.
+</footer>
+
+<script>
+    // Открытие/закрытие контента урока по кнопке "Начать обучение"
+    document.querySelectorAll('.start-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const module = this.dataset.module;
+            let targetId = '';
+            if (module === 'comm') targetId = 'comm-lesson';
+            else if (module === 'motiv') targetId = 'motiv-lesson';
+            else if (module === 'class') targetId = 'class-lesson';
+            else if (module === 'feedback') targetId = 'feedback-lesson';
+            
+            const lessonDiv = document.getElementById(targetId);
+            if (lessonDiv) {
+                lessonDiv.classList.toggle('show');
+            }
+        });
+    });
+
+    // Функция для проверки заданий и сохранения прогресса
+    function checkTask(moduleId, answer) {
+        let correct = false;
+        let message = '';
+        if (moduleId === 'comm') {
+            correct = (answer === 'b');
+            message = correct ? '✅ Верно! «Я слышу, ты злишься...» — это активное слушание.' : '❌ Неверно. Фраза «Ты не стараешься» — это обвинение, а не слушание. Попробуйте ещё раз.';
+        } else if (moduleId === 'motiv') {
+            correct = (answer === 'b');
+            message = correct ? '✅ Отлично! Конкретная похвала по делу мотивирует лучше, чем общее «молодец».' : '❌ Почти. «Молодец, пять» — хорошо, но не показывает, за что именно. Лучше хвалить процесс и усилия.';
+        } else if (moduleId === 'class') {
+            correct = (answer === 'b');
+            message = correct ? '✅ Да! Невербальные сигналы часто работают быстрее и без крика.' : '❌ Крик создаёт напряжение и не учит саморегуляции. Попробуйте невербальный способ.';
+        } else if (moduleId === 'feedback') {
+            correct = (answer === 'b');
+            message = correct ? '✅ Верно! Конструктивная обратная связь включает поддержку и конкретный совет.' : '❌ «Всё плохо» демотивирует. Нужно говорить, что уже получилось, и что улучшить.';
+        }
+        const feedbackDiv = document.getElementById(`${moduleId}-feedback`);
+        if (feedbackDiv) {
+            feedbackDiv.innerHTML = `<p>${message}</p>`;
+            // Если ответ верный — отмечаем модуль как пройденный
+            if (correct) {
+                markModuleCompleted(moduleId);
+            }
+        }
+    }
+
+    // Храним завершённые модули в localStorage
+    function markModuleCompleted(moduleId) {
+        let completed = JSON.parse(localStorage.getItem('pedmasterCompleted')) || [];
+        if (!completed.includes(moduleId)) {
+            completed.push(moduleId);
+            localStorage.setItem('pedmasterCompleted', JSON.stringify(completed));
+            updateProgressDisplay();
+            alert(`🎉 Поздравляем! Модуль "${getModuleName(moduleId)}" пройден. Прогресс обновлён.`);
+        }
+    }
+
+    function getModuleName(moduleId) {
+        const names = {
+            'comm': 'Коммуникация',
+            'motiv': 'Мотивация',
+            'class': 'Управление классом',
+            'feedback': 'Обратная связь'
+        };
+        return names[moduleId] || moduleId;
+    }
+
+    function updateProgressDisplay() {
+        const completed = JSON.parse(localStorage.getItem('pedmasterCompleted')) || [];
+        const count = completed.length;
+        document.getElementById('completed-count').innerText = count;
+        const progressBar = document.getElementById('global-progress-bar');
+        if (progressBar) {
+            progressBar.value = count;
+            progressBar.max = 4;
+        }
+        // Дополнительно можно подсвечивать пройденные модули (по желанию)
+    }
+
+    function resetProgress() {
+        localStorage.removeItem('pedmasterCompleted');
+        updateProgressDisplay();
+        // Также можно очистить все сообщения в заданиях
+        document.querySelectorAll('.feedback').forEach(el => el.innerHTML = '');
+        alert('Прогресс сброшен. Вы можете заново проходить модули.');
+    }
+
+    // Загрузка сохранённого прогресса при старте
+    updateProgressDisplay();
+</script>
+</body>
+</html>
